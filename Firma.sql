@@ -26,12 +26,15 @@ values('Roczna',22000),('Miesięczna',1350),('Kwartalna',5650),('Miesięczna',11
 insert into pensje(stanowisko,kwota,id_premii)
 values('menadżer',17000,3),('CEO',345000,9),('menadżer',15000,1),('asystentka',9000,1),('aplikant',5000,1),('administrator',13000,1),('recepcjonistka',8000,1),('sprzątacz',4000,1),('kontraktor',21000,1),('portier',4000,1);
 -- Wyświetlanie nazwiska oraz adresu z tabeli pracownicy.
-select nazwisko,adres from pracownicy; 
+select nazwisko,adres from pracownicy;
+-- Mialem problem z użyciem funkcji DATEPART w mySQL
+select data_,extract(week from data_), extract(month from data_)
+FROM rozliczenia.godziny;
+ 
 -- Zmiana w tabeli pensje z kwota na kwota_brutto i dodanie kwota_netto
 alter table pensje change kwota kwota_brutto int;
 alter table pensje add kwota_netto int;
 update pensje set kwota_netto = kwota_brutto * 0.73;
 
 select kwota_brutto,kwota_netto from pensje;
--- Mialem problem z użyciem funkcji DATEPART w mySQL
 
