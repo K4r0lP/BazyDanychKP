@@ -66,11 +66,11 @@ select pracownicy.imie, pracownicy.nazwisko, pensje.kwota
 from pracownicy inner join (pensje inner join wynagrodzenie on pensje.id_pensji = wynagrodzenie.id_pensji) on pracownicy.id_pracownika = wynagrodzenie.id_pracownika 
 where pensje.kwota between 1500 and 3000;
 -- h)Wyświetl imię i nazwisko pracowników, którzy pracowali w nadgodzinachi nie otrzymali premii.
-select imie, nazwisko from ksiegowosc.pracownicy inner join (ksiegowosc.godziny inner join
-(ksiegowosc.premie inner join ksiegowosc.wynagrodzenia on ksiegowosc.premie.id_premii = ksiegowosc.wynagrodzenia.id_premii)
-on ksiegowosc.godziny.id_godziny = ksiegowosc.wynagrodzenia.id_godziny) 
-on ksiegowosc.pracownicy.id_pracownika = ksiegowosc.wynagrodzenia.id_pracownika
-where ksiegowosc.godziny.liczba_godzin > 160 and ksiegowosc.premie.kwota = 0 ;
+select imie, nazwisko from ksiegowosc.pracownicy inner join (godziny inner join
+(premie inner join wynagrodzenie on premie.id_premii = wynagrodzenie.id_premii)
+on godziny.id_godziny = wynagrodzenie.id_godziny) 
+on pracownicy.id_pracownika = wynagrodzenie.id_pracownika
+where godziny.liczba_godzin > 160 and premie.kwota = 0 ;
 -- i)Uszereguj pracowników według pensji.
 select * 
 from pracownicy
