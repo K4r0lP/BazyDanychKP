@@ -4,7 +4,7 @@ go;
 
 begin
 	select HumanResources.EmployeePayHistory.BusinessEntityID, FirstName, LastName, Rate, RateChangeDate
-	from HumanResources.EmployeePayHistory INNER JOIN Person.Person
+	from HumanResources.EmployeePayHistory inner join Person.Person
 	on HumanResources.EmployeePayHistory.BusinessEntityID = Person.Person.BusinessEntityID
 	where Rate < (select avg(Rate)from HumanResources.EmployeePayHistory);
 end;
@@ -36,7 +36,7 @@ begin
 	select ProductID, Name, ProductNumber, SafetyStockLevel from Production.Product where Name = @nazwa_pr;
 end;
 
-declare @nazwa varchar(50) = 'Bearing Ball';
+declare @nazwa varchar(50) = 'LL Crankarm';
 exec wyswietlanie @nazwa;
 
 go;
@@ -50,14 +50,14 @@ begin
 	declare @numer varchar(20);
 
 	select @numer = Sales.CreditCard.CardNumber 
-	from Sales.CreditCard INNER JOIN Sales.SalesOrderHeader 
+	from Sales.CreditCard inner join Sales.SalesOrderHeader 
 	on Sales.CreditCard.CreditCardID = Sales.SalesOrderHeader.CreditCardID 
 	where Sales.SalesOrderHeader.SalesOrderID = @zamowienie;
 
 	return @numer
 end;
 go;
-declare @numer_zamowienia INT = 43659;
+declare @numer_zamowienia INT = 43892;
 select @numer_zamowienia, dbo.kartakredyt(@numer_zamowienia);
 
 go;
