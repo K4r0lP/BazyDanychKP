@@ -4,7 +4,7 @@ use cw10;
 -- Tworzenie Tabeli
 create table GeoEon(id_eon int not null auto_increment,nazwa_eon varchar(30) not null,primary key (id_eon));
 create table GeoEra(id_era int not null auto_increment,id_eon int,nazwa_era varchar(30) not null, primary key (id_era),foreign key (id_eon) references GeoEon(id_eon));
-create table GeoOkres(id_okres int not null auto_increment,id_era int,nazwa_okres varchar(30) not null,primary key (id_okres),foreign key(id_era) references GeoEra(id_eon));
+create table GeoOkres(id_okres int not null auto_increment,id_era int,nazwa_okres varchar(30) not null,primary key (id_okres),foreign key(id_era) references GeoEra(id_era));
 create table GeoEpoka(id_epoka int not null auto_increment,id_okres int,nazwa_epoka varchar(30) not null, primary key (id_epoka), foreign key(id_okres) references GeoOkres(id_okres));
 create table GeoPietro(id_pietro int not null auto_increment,id_epoka int,nazwa_pietro varchar(30) not null, primary key(id_pietro), foreign key(id_epoka) references GeoEpoka(id_epoka));
 
